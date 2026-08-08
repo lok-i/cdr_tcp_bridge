@@ -1,0 +1,6 @@
+channels:
+  - id: 1
+    topic: /cdr_tcp_bridge/smoke
+    type: std_msgs/msg/String
+    max_rate_hz: 0.0
+    priority: 1

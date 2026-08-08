@@ -1,0 +1,19 @@
+# Viewer profile: latest samples only, capped to keep Wi-Fi and Orin work small.
+channels:
+  - id: 1
+    topic: /enc/frame
+    type: sensor_msgs/msg/Image
+    max_rate_hz: 10.0
+    priority: 2
+
+  - id: 2
+    topic: /enc/tokens
+    type: vision_encoders/msg/ImageTokens
+    max_rate_hz: 10.0
+    priority: 4
+
+  - id: 3
+    topic: /vibe/sonic/attention_mask
+    type: std_msgs/msg/Float32MultiArray
+    max_rate_hz: 10.0
+    priority: 1

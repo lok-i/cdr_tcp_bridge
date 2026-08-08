@@ -1,0 +1,4 @@
+# Compression runs only on the offboard recorder. JPEG camera payloads will
+# barely shrink; numeric frame/token data may benefit.
+compression: Lz4
+compressionLevel: Fastest

@@ -1,0 +1,13 @@
+# Recording/viewing without the comparatively large token stream.
+channels:
+  - id: 1
+    topic: /enc/frame
+    type: sensor_msgs/msg/Image
+    max_rate_hz: 50.0
+    priority: 2
+
+  - id: 3
+    topic: /vibe/sonic/attention_mask
+    type: std_msgs/msg/Float32MultiArray
+    max_rate_hz: 50.0
+    priority: 1

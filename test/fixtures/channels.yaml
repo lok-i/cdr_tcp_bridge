@@ -1,0 +1,9 @@
+channels:
+  - id: 7
+    topic: /test/image
+    type: sensor_msgs/msg/Image
+    max_rate_hz: 12.5
+    priority: 2
+  - id: 9
+    topic: /test/data
+    type: std_msgs/msg/Float32MultiArray

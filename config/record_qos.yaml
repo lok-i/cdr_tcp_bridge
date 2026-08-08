@@ -1,0 +1,17 @@
+/enc/frame:
+  reliability: best_effort
+  durability: volatile
+  history: keep_last
+  depth: 10
+
+/enc/tokens:
+  reliability: best_effort
+  durability: volatile
+  history: keep_last
+  depth: 10
+
+/vibe/sonic/attention_mask:
+  reliability: best_effort
+  durability: volatile
+  history: keep_last
+  depth: 10
