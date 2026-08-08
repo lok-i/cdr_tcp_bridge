@@ -198,9 +198,11 @@ public:
     const auto share = ament_index_cpp::get_package_share_directory("cdr_tcp_bridge");
     role_ = this->declare_parameter<std::string>("role", "server");
     config_path_ = this->declare_parameter<std::string>(
-      "config_path", share + "/config/light.yaml");
-    bind_address_ = this->declare_parameter<std::string>("bind_address", "127.0.0.1");
-    server_address_ = this->declare_parameter<std::string>("server_address", "127.0.0.1");
+      "config_path", share + "/config/full.yaml");
+    bind_address_ = this->declare_parameter<std::string>(
+      "bind_address", "192.168.0.177");
+    server_address_ = this->declare_parameter<std::string>(
+      "server_address", "192.168.0.177");
     const int port_value = this->declare_parameter<int>("port", 5556);
     send_timeout_ms_ = this->declare_parameter<int>("send_timeout_ms", 20);
     receive_timeout_ms_ = this->declare_parameter<int>("receive_timeout_ms", 1000);

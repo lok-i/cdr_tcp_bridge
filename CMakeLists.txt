@@ -39,6 +39,10 @@ install(TARGETS cdr_tcp_bridge_core cdr_tcp_bridge
   RUNTIME DESTINATION lib/${PROJECT_NAME})
 install(DIRECTORY include/ DESTINATION include)
 install(DIRECTORY config/ DESTINATION share/${PROJECT_NAME}/config)
+install(PROGRAMS
+  scripts/bridge_server.sh
+  scripts/bridge_client.sh
+  DESTINATION lib/${PROJECT_NAME})
 
 if(BUILD_TESTING)
   find_package(ament_cmake_gtest REQUIRED)
