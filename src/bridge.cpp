@@ -458,13 +458,13 @@ private:
   {
     for (const auto & channel : channels_) {
       if (role_ == "server") {
-        RCLCPP_INFO(
+        RCLCPP_DEBUG(
           this->get_logger(),
           "TX %s: received=%lu sent=%lu overwritten=%lu oversize=%lu",
           channel->config.topic.c_str(), channel->slot.received(), channel->sent.load(),
           channel->slot.dropped(), channel->oversize.load());
       } else {
-        RCLCPP_INFO(
+        RCLCPP_DEBUG(
           this->get_logger(), "RX %s: published=%lu",
           channel->config.topic.c_str(), channel->published.load());
       }
