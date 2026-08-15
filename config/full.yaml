@@ -17,3 +17,17 @@ channels:
     type: std_msgs/msg/Float32MultiArray
     max_rate_hz: 50.0
     priority: 1
+
+  # Debug-rate robot telemetry. The source topics may run faster; the bridge's
+  # latest-only slots cap both streams without building a queue onboard.
+  - id: 4
+    topic: /lowstate
+    type: unitree_hg/msg/LowState
+    max_rate_hz: 50.0
+    priority: 5
+
+  - id: 5
+    topic: /lowcmd
+    type: unitree_hg/msg/LowCmd
+    max_rate_hz: 50.0
+    priority: 6

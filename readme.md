@@ -14,7 +14,8 @@ source install/setup.bash
 
 ## Run
 
-Defaults: Orin `192.168.0.177`, TCP `5556`, `config/full.yaml`.
+Defaults: Orin `gilfoyle-rth` (`192.168.0.177`), TCP `5556`,
+`config/full.yaml`. IPv4 addresses and `/etc/hosts`/DNS names are accepted.
 
 Onboard, keep the same ROS domain as the encoder/controller:
 
@@ -35,7 +36,8 @@ ros2 run cdr_tcp_bridge bridge_client.sh \
   -p config_path:="$(ros2 pkg prefix cdr_tcp_bridge)/share/cdr_tcp_bridge/config/light.yaml"
 ```
 
-- `full.yaml`: frame, tokens, attention at up to 50 Hz.
+- `full.yaml`: frame, tokens, attention, low state, and low command at up to
+  50 Hz.
 - `light.yaml`: the same topics at up to 10 Hz.
 - `no_latents.yaml`: frame and attention only.
 
@@ -48,7 +50,7 @@ export BRIDGE_SHARE="$(ros2 pkg prefix cdr_tcp_bridge)/share/cdr_tcp_bridge"
 ros2 bag record -s mcap \
   --qos-profile-overrides-path "$BRIDGE_SHARE/config/record_qos.yaml" \
   --storage-config-file "$BRIDGE_SHARE/config/mcap_writer.yaml" \
-  /enc/frame /enc/tokens /vibe/sonic/attention_mask
+  /enc/frame /enc/tokens /vibe/sonic/attention_mask /lowstate /lowcmd
 ```
 
 The raw high-resolution JPEG stream remains on TCP port `5555`; it is not in

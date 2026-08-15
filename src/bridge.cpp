@@ -9,6 +9,7 @@
 
 #include <arpa/inet.h>
 #include <fcntl.h>
+#include <netdb.h>
 #include <netinet/in.h>
 #include <netinet/tcp.h>
 #include <poll.h>
@@ -67,12 +68,23 @@ void configure_stream_socket(int fd, int buffer_bytes)
 
 sockaddr_in ipv4_endpoint(const std::string & address, uint16_t port)
 {
-  sockaddr_in endpoint{};
-  endpoint.sin_family = AF_INET;
-  endpoint.sin_port = htons(port);
-  if (::inet_pton(AF_INET, address.c_str(), &endpoint.sin_addr) != 1) {
-    throw std::runtime_error("invalid IPv4 address '" + address + "'");
+  addrinfo hints{};
+  hints.ai_family = AF_INET;
+  hints.ai_socktype = SOCK_STREAM;
+  hints.ai_protocol = IPPROTO_TCP;
+  hints.ai_flags = AI_NUMERICSERV;
+
+  addrinfo * results = nullptr;
+  const std::string service = std::to_string(port);
+  const int result = ::getaddrinfo(address.c_str(), service.c_str(), &hints, &results);
+  if (result != 0 || results == nullptr) {
+    throw std::runtime_error(
+            "cannot resolve IPv4 endpoint '" + address + "': " +
+            ::gai_strerror(result));
   }
+
+  const auto endpoint = *reinterpret_cast<const sockaddr_in *>(results->ai_addr);
+  ::freeaddrinfo(results);
   return endpoint;
 }
 
@@ -200,9 +212,9 @@ public:
     config_path_ = this->declare_parameter<std::string>(
       "config_path", share + "/config/full.yaml");
     bind_address_ = this->declare_parameter<std::string>(
-      "bind_address", "192.168.0.177");
+      "bind_address", "gilfoyle-rth");
     server_address_ = this->declare_parameter<std::string>(
-      "server_address", "192.168.0.177");
+      "server_address", "gilfoyle-rth");
     const int port_value = this->declare_parameter<int>("port", 5556);
     send_timeout_ms_ = this->declare_parameter<int>("send_timeout_ms", 20);
     receive_timeout_ms_ = this->declare_parameter<int>("receive_timeout_ms", 1000);
