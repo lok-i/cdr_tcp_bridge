@@ -17,7 +17,9 @@ source install/setup.bash
 Defaults: Orin `gilfoyle-rth` (`192.168.0.177`), TCP `5556`,
 `config/full.yaml`. IPv4 addresses and `/etc/hosts`/DNS names are accepted.
 
-Onboard, keep the same ROS domain as the encoder/controller:
+The repository setup selects `gilfoyle-rth` for a real experiment and
+`127.0.0.1` for simulation. Onboard, keep the same ROS domain as the
+encoder/controller:
 
 ```bash
 ros2 run cdr_tcp_bridge bridge_server.sh
