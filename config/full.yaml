@@ -31,3 +31,27 @@ channels:
     type: unitree_hg/msg/LowCmd
     max_rate_hz: 50.0
     priority: 6
+
+  # sys1, the retrieval planner. Carried by full and light alike, and silent
+  # unless a planner is running: three latest-only slots, a subscription each, so
+  # the offboard viewer and the bag carry the planner's state without anyone
+  # having to remember to select a different profile. Priority 3 because the
+  # payloads are tens of bytes and each one is a whole decision — a dropped
+  # Sys1Status is a missing frame in the story, not a stale sample.
+  - id: 6
+    topic: /vibe/sys1/status
+    type: cpp_control/msg/Sys1Status
+    max_rate_hz: 50.0
+    priority: 3
+
+  - id: 7
+    topic: /vibe/sys0/status
+    type: cpp_control/msg/Sys0Status
+    max_rate_hz: 50.0
+    priority: 7
+
+  - id: 8
+    topic: /vibe/sonic/goal_color
+    type: std_msgs/msg/Int32
+    max_rate_hz: 50.0
+    priority: 7

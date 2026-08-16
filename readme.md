@@ -38,10 +38,13 @@ ros2 run cdr_tcp_bridge bridge_client.sh \
   -p config_path:="$(ros2 pkg prefix cdr_tcp_bridge)/share/cdr_tcp_bridge/config/light.yaml"
 ```
 
-- `full.yaml`: frame, tokens, attention, low state, and low command at up to
-  50 Hz.
-- `light.yaml`: the same topics at up to 10 Hz.
+- `full.yaml`: frame, tokens, attention, low state, low command, and sys1's
+  three state topics at up to 50 Hz.
+- `light.yaml`: frame, tokens, attention, and sys1 at up to 10 Hz.
 - `no_latents.yaml`: frame and attention only.
+
+The sys1 channels are silent unless a planner is running, so `full` and `light`
+carry them unconditionally — a closed-loop run needs no profile switch.
 
 Server and client must use the same profile.
 
@@ -52,7 +55,8 @@ export BRIDGE_SHARE="$(ros2 pkg prefix cdr_tcp_bridge)/share/cdr_tcp_bridge"
 ros2 bag record -s mcap \
   --qos-profile-overrides-path "$BRIDGE_SHARE/config/record_qos.yaml" \
   --storage-config-file "$BRIDGE_SHARE/config/mcap_writer.yaml" \
-  /enc/frame /enc/tokens /vibe/sonic/attention_mask /lowstate /lowcmd
+  /enc/frame /enc/tokens /vibe/sonic/attention_mask /lowstate /lowcmd \
+  /vibe/sys1/status /vibe/sys0/status /vibe/sonic/goal_color
 ```
 
 The raw high-resolution JPEG stream remains on TCP port `5555`; it is not in

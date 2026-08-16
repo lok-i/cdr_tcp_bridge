@@ -27,3 +27,23 @@
   durability: volatile
   history: keep_last
   depth: 10
+
+# sys1. Deeper history because these are event-driven and sparse — one sample
+# is one decision, and the recorder must not miss it while it flushes a frame.
+/vibe/sys1/status:
+  reliability: best_effort
+  durability: volatile
+  history: keep_last
+  depth: 50
+
+/vibe/sys0/status:
+  reliability: best_effort
+  durability: volatile
+  history: keep_last
+  depth: 10
+
+/vibe/sonic/goal_color:
+  reliability: best_effort
+  durability: volatile
+  history: keep_last
+  depth: 50
