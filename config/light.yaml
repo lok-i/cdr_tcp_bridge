@@ -18,17 +18,17 @@ channels:
     max_rate_hz: 10.0
     priority: 1
 
-  # sys1's state. Ids match full.yaml so the two profiles never disagree about
+  # the planner's state. Ids match full.yaml so the two profiles never disagree about
   # what a channel number means; see full.yaml for why these are always here.
   - id: 6
-    topic: /vibe/sys1/status
-    type: cpp_control/msg/Sys1Status
+    topic: /vibe/planner/status
+    type: cpp_control/msg/PlannerStatus
     max_rate_hz: 10.0
     priority: 3
 
   - id: 7
-    topic: /vibe/sys0/status
-    type: cpp_control/msg/Sys0Status
+    topic: /vibe/controller/status
+    type: cpp_control/msg/ControllerStatus
     max_rate_hz: 10.0
     priority: 7
 
