@@ -1,0 +1,53 @@
+# Sys1 observation calibration: preserve every depth-bearing camera record.
+# The camera source owns the rate (10 Hz by default on D435i, every render in
+# sim); zero means no additional bridge-side cap. Latest-only slots still bound
+# memory and drop stale frames instead of building latency under backpressure.
+channels:
+  - id: 1
+    topic: /vibe/sys1/observe/color/compressed
+    type: sensor_msgs/msg/CompressedImage
+    max_rate_hz: 0.0
+    priority: 2
+
+  - id: 2
+    topic: /vibe/sys1/observe/depth
+    type: sensor_msgs/msg/Image
+    max_rate_hz: 0.0
+    priority: 3
+
+  - id: 3
+    topic: /vibe/sys1/observe/camera_info
+    type: sensor_msgs/msg/CameraInfo
+    max_rate_hz: 0.0
+    priority: 4
+
+  - id: 4
+    topic: /vibe/sys1/observe/labels
+    type: sensor_msgs/msg/Image
+    max_rate_hz: 0.0
+    priority: 1
+
+  - id: 5
+    topic: /vibe/sys1/observe/observation
+    type: cpp_control/msg/Sys1Observation
+    max_rate_hz: 0.0
+    priority: 6
+
+  - id: 6
+    topic: /lowstate
+    type: unitree_hg/msg/LowState
+    max_rate_hz: 50.0
+    priority: 5
+
+  - id: 7
+    topic: /vibe/sys0/status
+    type: cpp_control/msg/Sys0Status
+    max_rate_hz: 50.0
+    priority: 7
+
+  # Sparse edge event: Unitree L2 / Xbox LT selects one offboard snapshot.
+  - id: 8
+    topic: /vibe/sys1/calibration/click
+    type: std_msgs/msg/UInt64
+    max_rate_hz: 0.0
+    priority: 1

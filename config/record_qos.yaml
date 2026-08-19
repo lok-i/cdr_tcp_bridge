@@ -47,3 +47,78 @@
   durability: volatile
   history: keep_last
   depth: 50
+
+# Sys1 observation calibration. RGB-D and diagnostics are one logical sample;
+# each source publisher is latest-only/best-effort, matching the bridge.
+/vibe/sys1/observe/color/compressed:
+  reliability: best_effort
+  durability: volatile
+  history: keep_last
+  depth: 10
+
+/vibe/sys1/observe/depth:
+  reliability: best_effort
+  durability: volatile
+  history: keep_last
+  depth: 10
+
+/vibe/sys1/observe/camera_info:
+  reliability: best_effort
+  durability: volatile
+  history: keep_last
+  depth: 10
+
+/vibe/sys1/observe/labels:
+  reliability: best_effort
+  durability: volatile
+  history: keep_last
+  depth: 10
+
+/vibe/sys1/observe/observation:
+  reliability: best_effort
+  durability: volatile
+  history: keep_last
+  depth: 50
+
+/vibe/sys1/calibration/state:
+  reliability: reliable
+  durability: volatile
+  history: keep_last
+  depth: 50
+
+# The viewer republishes exactly one reliable RGB-D bundle per LT/Space click.
+/vibe/sys1/calibration/color/compressed:
+  reliability: reliable
+  durability: volatile
+  history: keep_last
+  depth: 50
+
+/vibe/sys1/calibration/depth:
+  reliability: reliable
+  durability: volatile
+  history: keep_last
+  depth: 50
+
+/vibe/sys1/calibration/camera_info:
+  reliability: reliable
+  durability: volatile
+  history: keep_last
+  depth: 50
+
+/vibe/sys1/calibration/labels:
+  reliability: reliable
+  durability: volatile
+  history: keep_last
+  depth: 50
+
+/vibe/sys1/calibration/observation:
+  reliability: reliable
+  durability: volatile
+  history: keep_last
+  depth: 50
+
+/vibe/sys1/calibration/click:
+  reliability: best_effort
+  durability: volatile
+  history: keep_last
+  depth: 10

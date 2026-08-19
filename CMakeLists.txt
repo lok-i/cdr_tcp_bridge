@@ -56,7 +56,8 @@ if(BUILD_TESTING)
   ament_add_gtest(test_config test/test_config.cpp)
   target_link_libraries(test_config cdr_tcp_bridge_core)
   target_compile_definitions(test_config PRIVATE
-    TEST_CONFIG_PATH="${CMAKE_CURRENT_SOURCE_DIR}/test/fixtures/channels.yaml")
+    TEST_CONFIG_PATH="${CMAKE_CURRENT_SOURCE_DIR}/test/fixtures/channels.yaml"
+    TEST_SYS1_CONFIG_PATH="${CMAKE_CURRENT_SOURCE_DIR}/config/sys1_observe.yaml")
 endif()
 
 ament_export_include_directories(include)

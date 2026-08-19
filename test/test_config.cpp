@@ -24,6 +24,20 @@ TEST(Config, LoadsChannelDefaultsAndOverrides)
   EXPECT_EQ(channels[1].priority, 5);
 }
 
+TEST(Config, LoadsSys1RgbdCalibrationProfile)
+{
+  const auto channels = load_channels(TEST_SYS1_CONFIG_PATH);
+  ASSERT_EQ(channels.size(), 8u);
+  EXPECT_EQ(channels[0].topic, "/vibe/sys1/observe/color/compressed");
+  EXPECT_EQ(channels[1].topic, "/vibe/sys1/observe/depth");
+  EXPECT_EQ(channels[1].type, "sensor_msgs/msg/Image");
+  EXPECT_DOUBLE_EQ(channels[1].max_rate_hz, 0.0);
+  EXPECT_EQ(channels[4].type, "cpp_control/msg/Sys1Observation");
+  EXPECT_EQ(channels[6].topic, "/vibe/sys0/status");
+  EXPECT_EQ(channels[7].topic, "/vibe/sys1/calibration/click");
+  EXPECT_EQ(channels[7].type, "std_msgs/msg/UInt64");
+}
+
 TEST(Config, RejectsDuplicateIdsAndInvalidTopics)
 {
   const ChannelConfig valid{1, "/valid", "std_msgs/msg/String", 0.0, 5};
