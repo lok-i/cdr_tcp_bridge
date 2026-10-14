@@ -22,7 +22,7 @@ channels:
   # what a channel number means; see full.yaml for why these are always here.
   - id: 6
     topic: /vibe/planner/status
-    type: cpp_control/msg/PlannerStatus
+    type: sledgehammer/msg/PlannerStatus
     max_rate_hz: 10.0
     priority: 3
 

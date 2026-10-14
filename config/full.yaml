@@ -40,7 +40,7 @@ channels:
   # PlannerStatus is a missing frame in the story, not a stale sample.
   - id: 6
     topic: /vibe/planner/status
-    type: cpp_control/msg/PlannerStatus
+    type: sledgehammer/msg/PlannerStatus
     max_rate_hz: 50.0
     priority: 3
 
