@@ -29,7 +29,7 @@ channels:
 
   - id: 5
     topic: /vibe/planner/observe/observation
-    type: cpp_control/msg/CubeObservation
+    type: sledgehammer/msg/CubeObservation
     max_rate_hz: 0.0
     priority: 6
 

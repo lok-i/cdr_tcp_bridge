@@ -32,7 +32,7 @@ TEST(Config, LoadsReposeRgbdCalibrationProfile)
   EXPECT_EQ(channels[1].topic, "/vibe/planner/observe/depth");
   EXPECT_EQ(channels[1].type, "sensor_msgs/msg/Image");
   EXPECT_DOUBLE_EQ(channels[1].max_rate_hz, 0.0);
-  EXPECT_EQ(channels[4].type, "cpp_control/msg/CubeObservation");
+  EXPECT_EQ(channels[4].type, "sledgehammer/msg/CubeObservation");
   EXPECT_EQ(channels[6].topic, "/vibe/controller/status");
   EXPECT_EQ(channels[7].topic, "/vibe/planner/calibration/click");
   EXPECT_EQ(channels[7].type, "std_msgs/msg/UInt64");
